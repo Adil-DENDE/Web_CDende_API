@@ -30,3 +30,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log("Server is online poort 5000"); // Gewoon om te weten of het wel gelukt is om de server te starten//
 });
+
+// Export the app as a module
+module.exports = app;
