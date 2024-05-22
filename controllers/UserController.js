@@ -105,10 +105,8 @@ const getAllUsers = (req, res) => {
       console.error("Fout bij het uitvoeren van de query: ", err);
       res
         .status(500)
-        .json(
-          "Er is een fout opgetreden bij het ophalen van de gebruikers.",
-          401
-        );
+        .json(err)
+         ;
     } else {
       console.log("Gegevens succesvol opgehaald.");
       res.json(results);
