@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // IMPORTEERT DE ROUTES ZODAT IK DIE HIER KAN GEBRUIKEN //
-const userRouter = require("../routes/user.js");
-const autoRouter = require("../routes/auto.js");
+const userRouter = require("./routes/user.js");
+const autoRouter = require("./routes/auto.js");
 
 
 
@@ -28,6 +28,3 @@ app.get("/", (req, res) => res.json({message :"Express on Vercel"}));
 app.listen(port, () => {
   console.log("Server is online poort 3000"); // Gewoon om te weten of het wel gelukt is om de server te starten//
 });
-
-// Export the app as a module
-module.exports = app;
