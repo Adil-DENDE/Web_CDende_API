@@ -21,6 +21,12 @@ const autoRouter = require("./routes/Auto");
 app.use("/user", userRouter);
 app.use("/car", autoRouter);
 
+// HIER GEWOON OM TE TESTEN OF DE SERVER WERKT //
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
+
+
 app.listen(port, () => {
   console.log("Server is online poort 5000"); // Gewoon om te weten of het wel gelukt is om de server te starten//
 });
