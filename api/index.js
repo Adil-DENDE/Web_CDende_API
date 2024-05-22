@@ -22,7 +22,7 @@ app.use("/user", userRouter);
 app.use("/car", autoRouter);
 
 // HIER GEWOON OM TE TESTEN OF DE SERVER WERKT //
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.get("/", (req, res) => res.json({message :"Express on Vercel"}));
 
 
 app.listen(port, () => {
