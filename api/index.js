@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // IMPORTEERT DE ROUTES ZODAT IK DIE HIER KAN GEBRUIKEN //
-const userRouter = require("../routes/User");
-const autoRouter = require("../routes/Auto");
+const userRouter = require("./routes/User");
+const autoRouter = require("./routes/Auto");
 
 
 
