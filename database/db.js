@@ -5,6 +5,7 @@ const pool = mysql.createPool({
     user: dotenv.config().parsed.DB_USERNAME,
     database: dotenv.config().parsed.DB_DATABASE,
     password: dotenv.config().parsed.DB_PASSWORD,
+    port: dotenv.config().parsed.DB_PORT,
   });
 
   pool.getConnection((error) => {
