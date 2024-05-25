@@ -1,6 +1,6 @@
 var config = require("../database/db");
 const path = require("path");
-
+const Joi = require("joi"); // WORDT GEBRUIKT VOOR VALIDATIE VAN DE INPUTS //
 
 // GET ALLE AUTOS //
 const getAllCars = (req, res) => {
@@ -34,7 +34,7 @@ const getCarOnId = (req, res) => {
       res.json(result[0]);
     }
   });
-}
+};
 
 // GET IMAGE FOR A CAR //
 const getImageCar = (req, res) => {
@@ -58,4 +58,32 @@ const getImageCar = (req, res) => {
   });
 };
 
-module.exports = { getAllCars, getImageCar, getCarOnId };
+const createCar = (req, res) => {
+  const signupSchema = Joi.object({
+    prijs: Joi.number().required().max(1000000).min(0),
+    model: Joi.string().required(),
+    beschrijving: Joi.string(),
+  }).validate(req.body);
+
+  const { error } = signupSchema;
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
+  }else {
+    const { prijs, model, beschrijving } = req.body;
+    const query = `INSERT INTO car (prijs, model, beschrijving, car_image_id) VALUES (${prijs}, '${model}', '${beschrijving}', '0')`;
+
+    config.query(query, (err, results) => {
+      if (err) {
+        console.error("Fout bij het uitvoeren van de query: ", err);
+        res
+          .status(500)
+          .send("Er is een fout opgetreden bij het toevoegen van de auto.");
+      } else {
+        console.log("Gegevens succesvol opgehaald.");
+        res.json({ message: "Car created" });
+      }
+    });
+  }
+};
+
+module.exports = { getAllCars, getImageCar, getCarOnId, createCar };
