@@ -6,6 +6,7 @@ const pool = mysql.createPool({
     database: dotenv.config().parsed.DB_DATABASE,
     password: dotenv.config().parsed.DB_PASSWORD,
     port: dotenv.config().parsed.DB_PORT,
+    connectTimeout: 60000  // Augmenter le délai d'attente à 30 secondes
   });
 
   pool.getConnection((error) => {
