@@ -1,6 +1,6 @@
 // Imports //
 const express = require("express"); // EXPRESS JS //
-const port = 3000; // Creatie van de poort en geeft een melding //
+const port = 3306; // Creatie van de poort en geeft een melding //
 const app = express(); // Express aanmaken om die daarna te gebruiken //
 const bodyParser = require("body-parser");
 
