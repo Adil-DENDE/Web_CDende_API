@@ -97,21 +97,23 @@ const authUser = (req, res) => {
 };
 
 // GEEFT ALLE USERS TERUG //
-const getAllUsers = (req, res) => {
-  const query = "SELECT * FROM user";
+const getAllUsers = async (req, res) => {
+  try {
+    const query = "SELECT * FROM user";
 
-  config.query(query, (err, results) => {
-    if (err) {
-      console.error("Fout bij het uitvoeren van de query: ", err);
-      res
-        .status(500)
-        .json(err)
-         ;
-    } else {
-      console.log("Gegevens succesvol opgehaald.");
-      res.json(results);
-    }
-  });
+    config.query(query, (err, results) => {
+      if (err) {
+        console.error("Fout bij het uitvoeren van de query: ", err);
+        res.status(500).json(err);
+      } else {
+        console.log("Gegevens succesvol opgehaald.");
+        res.json(results);
+      }
+    });
+  } catch (error) {
+    console.error("Er is een fout opgetreden: ", error);
+    res.status(500).json({ error: "Er is een fout opgetreden." });
+  }
 };
 
 // GEEFT EEN BEPAALDE USER TERUG //
